@@ -1,10 +1,10 @@
 name: build_docker
 
 on:
-  push:
-    branches: [main]
-  release:
-    types: [created] # 表示在创建新的 Release 时触发
+#  push:
+#    branches: [main]
+#  release:
+#    types: [created] # 表示在创建新的 Release 时触发
   workflow_dispatch: # 添加 workflow_dispatch 触发器，用于手动触发构建
 
 jobs:
