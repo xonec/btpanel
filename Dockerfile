@@ -4,6 +4,8 @@ FROM debian:bullseye-slim
 # 设置维护者信息
 LABEL maintainer="ifui <ifui@foxmail.com>"
 
+RUN groupadd -f www && useradd -g www www
+
 # 定义软件版本号和安装路径变量
 ENV BAOTA_INSTALL_PATH=https://download.bt.cn/install/off_install.sh \
     BAOTA_UPDATE_PATH=https://io.bt.sy/install/update_panel.sh \
@@ -13,9 +15,8 @@ ENV BAOTA_INSTALL_PATH=https://download.bt.cn/install/off_install.sh \
     PHP_VERSION=7.4 \
     MYSQL_VERSION=5.6
     
-# 创建用户组和用户,设置容器时间和更换国内源，安装依赖软件
-RUN groupadd -f www && useradd -g www www \
-    && ln -fs /usr/share/zoneinfo/${TZ} /etc/localtime \
+# 设置容器时间和更换国内源，安装依赖软件
+RUN ln -fs /usr/share/zoneinfo/${TZ} /etc/localtime \
     && echo ${TZ} > /etc/timezone \
     && dpkg-reconfigure --frontend noninteractive tzdata \
     && sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list \
