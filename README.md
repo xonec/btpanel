@@ -25,6 +25,16 @@
 - `PHP_VERSION`: PHP版本号，默认为7.4
 - `MYSQL_VERSION`: MySQL版本号，默认为5.6
 
+例如，如果你想在安装软件时只显示错误信息，你可以这样做：
+
+apt-get install -y package-name > /dev/null
+这条命令将标准输出（stdout）重定向到/dev/null，但是错误输出（stderr）仍然会显示在终端上。
+
+如果你想完全静默安装，即不显示任何输出，你可以这样做：
+
+apt-get install -y package-name > /dev/null 2>&1
+
+
 ## 注意事项
 
 - 容器启动后会自动安装宝塔面板，并进行升级操作。
