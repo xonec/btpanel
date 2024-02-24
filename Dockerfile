@@ -40,10 +40,10 @@ RUN rm -rf /var/lib/apt/lists/*
 RUN chmod 777 /www/server/panel/install/install_soft.sh
 RUN bash /www/server/panel/install/install_soft.sh 0 install nginx ${NGINX_VERSION}
 RUN echo "Nginx ${NGINX_VERSION} 安装完成。"
-RUN bash /www/server/panel/install/install_soft.sh 0 install php ${PHP_VERSION}
-RUN echo "PHP ${PHP_VERSION} 安装完成。"
-RUN bash /www/server/panel/install/install_soft.sh 0 install mysql ${MYSQL_VERSION}
-RUN echo "MySQL ${MYSQL_VERSION} 安装完成。"
+#RUN bash /www/server/panel/install/install_soft.sh 0 install php ${PHP_VERSION}
+#RUN echo "PHP ${PHP_VERSION} 安装完成。"
+#RUN bash /www/server/panel/install/install_soft.sh 0 install mysql ${MYSQL_VERSION}
+#RUN echo "MySQL ${MYSQL_VERSION} 安装完成。"
 RUN echo "NPM 安装完成。"
 
 
