@@ -39,11 +39,11 @@ RUN ln -fs /usr/share/zoneinfo/${TZ} /etc/localtime \
     && rm -rf /var/lib/apt/lists/*  \
     && chmod 777 /www/server/panel/install/install_soft.sh \
     && bash /www/server/panel/install/install_soft.sh 0 install nginx ${NGINX_VERSION}  > /dev/null 2>&1 \
-    && echo "Nginx ${NGINX_VERSION} 安装完成。" \
+#    && echo "Nginx ${NGINX_VERSION} 安装完成。" \
     && bash /www/server/panel/install/install_soft.sh 0 install php ${PHP_VERSION}  > /dev/null 2>&1 \
-    && echo "PHP ${PHP_VERSION} 安装完成。" \
+#    && echo "PHP ${PHP_VERSION} 安装完成。" \
     && bash /www/server/panel/install/install_soft.sh 0 install mysql ${MYSQL_VERSION}  > /dev/null 2>&1 \
-    && echo "MySQL ${MYSQL_VERSION} 安装完成。" \
+#    && echo "MySQL ${MYSQL_VERSION} 安装完成。" \
     && echo "NPM 安装完成。"
 
 # 复制并设置权限
