@@ -11,7 +11,7 @@ ENV BAOTA_INSTALL_PATH=https://download.bt.cn/install/off_install.sh \
     BAOTA_UPDATE_PATH=https://io.bt.sy/install/update_panel.sh \
     TZ=Asia/Shanghai \
     DEBIAN_FRONTEND=noninteractive \
-    NGINX_VERSION=1.21 \
+    NGINX_VERSION=1.22 \
     PHP_VERSION=7.4 \
     MYSQL_VERSION=5.6
 
