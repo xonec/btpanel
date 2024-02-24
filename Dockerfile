@@ -17,15 +17,15 @@ RUN ln -fs /usr/share/zoneinfo/${TZ} /etc/localtime \
     && dpkg-reconfigure --frontend noninteractive tzdata \
     && sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list \
     && apt-get update > /dev/null \
-    && apt-get install -y --no-install-recommends init procps wget iproute2 locales > /dev/null \
+    && apt-get install -y --no-install-recommends init procps wget iproute2 locales > /dev/null 2>&1 \
     && sed -i -e 's/# zh_CN.UTF-8 UTF-8/zh_CN.UTF-8 UTF-8/' /etc/locale.gen \
     && locale-gen \
-    && wget -O install.sh ${BAOTA_INSTALL_PATH} > /dev/null \
-    && echo y | bash install.sh > /dev/null \
+    && wget -O install.sh ${BAOTA_INSTALL_PATH} > /dev/null 2>&1 \
+    && echo y | bash install.sh > /dev/null 2>&1 \
     && echo "Baota8.0.1安装完成" \
     && sleep 3 \
-    && wget -O update_panel.sh ${BAOTA_UPDATE_PATH} > /dev/null \
-    && echo y | bash update_panel.sh > /dev/null \
+    && wget -O update_panel.sh ${BAOTA_UPDATE_PATH} > /dev/null 2>&1 \
+    && echo y | bash update_panel.sh > /dev/null 2>&1 \
     && echo "Baota8.0.5升级完成" \
     && sleep 3 \
     && rm -rf /var/lib/apt/lists/* \
