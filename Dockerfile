@@ -19,25 +19,32 @@ ENV BAOTA_INSTALL_PATH=https://download.bt.cn/install/off_install.sh \
 RUN ln -fs /usr/share/zoneinfo/${TZ} /etc/localtime > /dev/null 2>&1 \
     && echo ${TZ} > /etc/timezone > /dev/null 2>&1 \
     && dpkg-reconfigure --frontend noninteractive tzdata > /dev/null 2>&1 \
-    && sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list > /dev/null 2>&1 \
-    && apt-get update > /dev/null 2>&1 \
-    && apt-get install -y init procps wget iproute2 locales > /dev/null 2>&1 \
+    && echo "时间设置完成。" \
     && sed -i -e 's/# zh_CN.UTF-8 UTF-8/zh_CN.UTF-8 UTF-8/' /etc/locale.gen > /dev/null 2>&1 \
     && locale-gen > /dev/null 2>&1 \
-    && wget -O install.sh ${BAOTA_INSTALL_PATH}  > /dev/null 2>&1\
-    && echo y | bash install.sh  > /dev/null 2>&1\
-    && echo "Baota8.0.1安装完成" \
+    && echo "语言设置完成。" \
+    && sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list > /dev/null 2>&1 \
+    && apt-get update > /dev/null 2>&1 \
+    && echo "APT源更新完成。" \
+    && apt-get install -y init procps wget iproute2 locales > /dev/null 2>&1 \
+    && echo "前置环境设置完成。" \
+    && wget -O install.sh ${BAOTA_INSTALL_PATH}  > /dev/null 2>&1 \
+    && echo y | bash install.sh  > /dev/null 2>&1 \
+    && echo "宝塔面板 8.0.1 安装完成。" \
     && sleep 3 \
-    && wget -O update_panel.sh ${BAOTA_UPDATE_PATH}  > /dev/null 2>&1\
-    && echo y | bash update_panel.sh  > /dev/null 2>&1\
-    && echo "Baota8.0.5升级完成" \
+    && wget -O update_panel.sh ${BAOTA_UPDATE_PATH}  > /dev/null 2>&1 \
+    && echo y | bash update_panel.sh  > /dev/null 2>&1 \
+    && echo "宝塔面板升级至 8.0.5 完成。" \
     && sleep 3 \
-    && rm -rf /var/lib/apt/lists/*  > /dev/null 2>&1\
-    && chmod 777 /www/server/panel/install/install_soft.sh  > /dev/null 2>&1\
-    && bash /www/server/panel/install/install_soft.sh 0 install nginx ${NGINX_VERSION} \
-    && bash /www/server/panel/install/install_soft.sh 0 install php ${PHP_VERSION} \
-    && bash /www/server/panel/install/install_soft.sh 0 install mysql ${MYSQL_VERSION} \
-    && echo "NPM安装完成"
+    && rm -rf /var/lib/apt/lists/*  > /dev/null 2>&1 \
+    && chmod 777 /www/server/panel/install/install_soft.sh  > /dev/null 2>&1 \
+    && bash /www/server/panel/install/install_soft.sh 0 install nginx ${NGINX_VERSION}  > /dev/null 2>&1 \
+    && echo "Nginx ${NGINX_VERSION} 安装完成。" \
+    && bash /www/server/panel/install/install_soft.sh 0 install php ${PHP_VERSION}  > /dev/null 2>&1 \
+    && echo "PHP ${PHP_VERSION} 安装完成。" \
+    && bash /www/server/panel/install/install_soft.sh 0 install mysql ${MYSQL_VERSION}  > /dev/null 2>&1 \
+    && echo "MySQL ${MYSQL_VERSION} 安装完成。" \
+    && echo "NPM 安装完成。"
 
 # 复制并设置权限
 COPY app.sh /
