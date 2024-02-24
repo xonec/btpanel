@@ -20,14 +20,14 @@ RUN ln -fs /usr/share/zoneinfo/${TZ} /etc/localtime
 RUN echo ${TZ} > /etc/timezone
 RUN dpkg-reconfigure --frontend noninteractive tzdata
 RUN echo "时间设置完成。"
-RUN sed -i -e 's/# zh_CN.UTF-8 UTF-8/zh_CN.UTF-8 UTF-8/' /etc/locale.gen
-RUN locale-gen
-RUN echo "语言设置完成。"
 RUN sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
 RUN apt-get update
 RUN echo "APT源更新完成。"
 RUN apt-get install -y init procps wget iproute2 locales
 RUN echo "前置环境设置完成。"
+RUN sed -i -e 's/# zh_CN.UTF-8 UTF-8/zh_CN.UTF-8 UTF-8/' /etc/locale.gen
+RUN locale-gen
+RUN echo "语言设置完成。"
 RUN wget -O install.sh ${BAOTA_INSTALL_PATH}
 RUN echo y | bash install.sh
 RUN echo "宝塔面板 8.0.1 安装完成。"
