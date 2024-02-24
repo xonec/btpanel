@@ -20,7 +20,7 @@ RUN groupadd -f www && useradd -g www www \
     && dpkg-reconfigure --frontend noninteractive tzdata \
     && sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list \
     && apt-get update \
-    && apt-get install -y init procps wget iproute2 locales \
+    && apt-get install -y --no-install-recommends init procps wget iproute2 locales \
     && sed -i -e 's/# zh_CN.UTF-8 UTF-8/zh_CN.UTF-8 UTF-8/' /etc/locale.gen \
     && locale-gen \
     && wget -O install.sh ${BAOTA_INSTALL_PATH} \
