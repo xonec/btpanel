@@ -16,14 +16,14 @@ ENV BAOTA_INSTALL_PATH=https://download.bt.cn/install/off_install.sh \
     MYSQL_VERSION=5.6
 
 # 设置容器时间和更换国内源，安装依赖软件
-RUN ln -fs /usr/share/zoneinfo/${TZ} /etc/localtime > /dev/null 2>&1 \
-    && echo ${TZ} > /etc/timezone > /dev/null 2>&1 \
-    && dpkg-reconfigure --frontend noninteractive tzdata > /dev/null 2>&1 \
+RUN ln -fs /usr/share/zoneinfo/${TZ} /etc/localtime \
+    && echo ${TZ} > /etc/timezone \
+    && dpkg-reconfigure --frontend noninteractive tzdata \
     && echo "时间设置完成。" \
-    && sed -i -e 's/# zh_CN.UTF-8 UTF-8/zh_CN.UTF-8 UTF-8/' /etc/locale.gen > /dev/null 2>&1 \
-    && locale-gen > /dev/null 2>&1 \
+    && sed -i -e 's/# zh_CN.UTF-8 UTF-8/zh_CN.UTF-8 UTF-8/' /etc/locale.gen \
+    && locale-gen \
     && echo "语言设置完成。" \
-    && sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list > /dev/null 2>&1 \
+    && sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list \
     && apt-get update > /dev/null 2>&1 \
     && echo "APT源更新完成。" \
     && apt-get install -y init procps wget iproute2 locales > /dev/null 2>&1 \
