@@ -16,14 +16,14 @@ ENV BAOTA_INSTALL_PATH=https://download.bt.cn/install/off_install.sh \
     MYSQL_VERSION=5.6
 
 # 设置容器时间和更换国内源，安装依赖软件
-RUN ln -fs /usr/share/zoneinfo/${TZ} /etc/localtime \
-    && echo ${TZ} > /etc/timezone \
-    && dpkg-reconfigure --frontend noninteractive tzdata \
-    && sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list \
+RUN ln -fs /usr/share/zoneinfo/${TZ} /etc/localtime > /dev/null 2>&1 \
+    && echo ${TZ} > /etc/timezone > /dev/null 2>&1 \
+    && dpkg-reconfigure --frontend noninteractive tzdata > /dev/null 2>&1 \
+    && sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list > /dev/null 2>&1 \
     && apt-get update > /dev/null 2>&1 \
     && apt-get install -y init procps wget iproute2 locales > /dev/null 2>&1 \
-    && sed -i -e 's/# zh_CN.UTF-8 UTF-8/zh_CN.UTF-8 UTF-8/' /etc/locale.gen \
-    && locale-gen \
+    && sed -i -e 's/# zh_CN.UTF-8 UTF-8/zh_CN.UTF-8 UTF-8/' /etc/locale.gen > /dev/null 2>&1 \
+    && locale-gen > /dev/null 2>&1 \
     && wget -O install.sh ${BAOTA_INSTALL_PATH}  > /dev/null 2>&1\
     && echo y | bash install.sh  > /dev/null 2>&1\
     && echo "Baota8.0.1安装完成" \
@@ -32,8 +32,8 @@ RUN ln -fs /usr/share/zoneinfo/${TZ} /etc/localtime \
     && echo y | bash update_panel.sh  > /dev/null 2>&1\
     && echo "Baota8.0.5升级完成" \
     && sleep 3 \
-    && rm -rf /var/lib/apt/lists/* \
-    && chmod 777 /www/server/panel/install/install_soft.sh \
+    && rm -rf /var/lib/apt/lists/*  > /dev/null 2>&1\
+    && chmod 777 /www/server/panel/install/install_soft.sh  > /dev/null 2>&1\
     && bash /www/server/panel/install/install_soft.sh 0 install nginx ${NGINX_VERSION} \
     && bash /www/server/panel/install/install_soft.sh 0 install php ${PHP_VERSION} \
     && bash /www/server/panel/install/install_soft.sh 0 install mysql ${MYSQL_VERSION} \
