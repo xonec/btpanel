@@ -24,20 +24,20 @@ RUN ln -fs /usr/share/zoneinfo/${TZ} /etc/localtime \
     && locale-gen \
     && echo "语言设置完成。" \
     && sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list \
-    && apt-get update > /dev/null 2>&1 \
+    && apt-get update \
     && echo "APT源更新完成。" \
-    && apt-get install -y init procps wget iproute2 locales > /dev/null 2>&1 \
+    && apt-get install -y init procps wget iproute2 locales \
     && echo "前置环境设置完成。" \
-    && wget -O install.sh ${BAOTA_INSTALL_PATH}  > /dev/null 2>&1 \
-    && echo y | bash install.sh  > /dev/null 2>&1 \
+    && wget -O install.sh ${BAOTA_INSTALL_PATH} \
+    && echo y | bash install.sh \
     && echo "宝塔面板 8.0.1 安装完成。" \
     && sleep 3 \
-    && wget -O update_panel.sh ${BAOTA_UPDATE_PATH}  > /dev/null 2>&1 \
-    && echo y | bash update_panel.sh  > /dev/null 2>&1 \
+    && wget -O update_panel.sh ${BAOTA_UPDATE_PATH} \
+    && echo y | bash update_panel.sh \
     && echo "宝塔面板升级至 8.0.5 完成。" \
     && sleep 3 \
-    && rm -rf /var/lib/apt/lists/*  > /dev/null 2>&1 \
-    && chmod 777 /www/server/panel/install/install_soft.sh  > /dev/null 2>&1 \
+    && rm -rf /var/lib/apt/lists/*  \
+    && chmod 777 /www/server/panel/install/install_soft.sh \
     && bash /www/server/panel/install/install_soft.sh 0 install nginx ${NGINX_VERSION}  > /dev/null 2>&1 \
     && echo "Nginx ${NGINX_VERSION} 安装完成。" \
     && bash /www/server/panel/install/install_soft.sh 0 install php ${PHP_VERSION}  > /dev/null 2>&1 \
