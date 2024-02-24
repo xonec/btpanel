@@ -24,9 +24,9 @@ RUN ln -fs /usr/share/zoneinfo/${TZ} /etc/localtime \
     && locale-gen \
     && echo "语言设置完成。" \
     && sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list \
-    && apt-get update \
+    && apt-get update  > /dev/null \
     && echo "APT源更新完成。" \
-    && apt-get install -y init procps wget iproute2 locales \
+    && apt-get install -y init procps wget iproute2 locales > /dev/null \
     && echo "前置环境设置完成。" \
     && wget -O install.sh ${BAOTA_INSTALL_PATH} \
     && echo y | bash install.sh \
