@@ -44,4 +44,4 @@ COPY app.sh /
 RUN chmod 777 /app.sh
 
 # 设置默认命令
-CMD ["sh", "-c", "/app.sh & tail -f /dev/null"]
+CMD ["sh", "-c", "/app.sh"]
