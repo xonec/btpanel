@@ -21,7 +21,7 @@
 - `BAOTA_INSTALL_PATH`: 宝塔安装脚本路径，默认为https://download.bt.cn/install/off_install.sh
 - `BAOTA_UPDATE_PATH`: 宝塔更新脚本路径，默认为https://io.bt.sy/install/update_panel.sh
 - `TZ`: 时区，默认为Asia/Shanghai
-- `NGINX_VERSION`: Nginx版本号，默认为1.21
+- `NGINX_VERSION`: Nginx版本号，默认为1.22
 - `PHP_VERSION`: PHP版本号，默认为7.4
 - `MYSQL_VERSION`: MySQL版本号，默认为5.6
 
