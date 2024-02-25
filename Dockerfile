@@ -28,44 +28,21 @@ RUN ln -fs /usr/share/zoneinfo/${TZ} /etc/localtime \
     && locale-gen \
     && echo "语言设置完成." \
 
-# 下载并安装宝塔面板 8.0.1
-    && wget -O install.sh ${BAOTA_INSTALL_PATH} \
+# 下载并安装官方宝塔面板
+    && wget -O install.sh ${BAOTA_INSTALL_PATH}  --nginx-install ${NGINX_VERSION} --php-install ${PHP_VERSION} --mysql-install ${MYSQL_VERSION} --phpmyadmin-install ${PHPMYADMIN_VERSION} \
     && echo y | bash install.sh \
-    && echo "宝塔面板 8.0.1 安装完成." \
-    && sleep 3 \
+    && echo "官方宝塔面板安装完成.Nginx ${NGINX_VERSION} 安装完成.PHP ${PHP_VERSION} 安装完成.phpMyAdmin ${PHPMYADMIN_VERSION} 安装完成." \
+    && sleep 6 \
 
 # 更新宝塔面板至 8.0.5
     && wget -O update_panel.sh ${BAOTA_UPDATE_PATH} \
     && echo y | bash update_panel.sh \
-    && echo "宝塔面板升级至 8.0.5 完成." \
+    && echo "宝塔面板升级至开心版完成." \
     && sleep 1 \
 
 # 清理APT缓存
-    && rm -rf /var/lib/apt/lists/* \
+    && rm -rf /var/lib/apt/lists/* 
 
-# 安装Nginx
-    && chmod 777 /www/server/panel/install/install_soft.sh \
-    && bash /www/server/panel/install/install_soft.sh 0 install nginx ${NGINX_VERSION} > /dev/null 2>&1 \
-    && echo "Nginx ${NGINX_VERSION} 安装完成." \
-    && sleep 3 \
-
-# 安装PHP
-    && bash /www/server/panel/install/install_soft.sh 0 install php ${PHP_VERSION} > /dev/null 2>&1 \
-    && echo "PHP ${PHP_VERSION} 安装完成." \
-    && sleep 3 \
-
-# 安装MySQL
-    && bash /www/server/panel/install/install_soft.sh 0 install mysql ${MYSQL_VERSION} > /dev/null 2>&1 \
-    && echo "MySQL ${MYSQL_VERSION} 安装完成." \
-    && sleep 3 \
-
-# 安装phpMyAdmin
-    && bash /www/server/panel/install/install_soft.sh 1 install phpmyadmin ${PHPMYADMIN_VERSION} > /dev/null 2>&1 \
-    && echo "phpMyAdmin ${PHPMYADMIN_VERSION} 安装完成." \
-    && sleep 3 \
-
-# 安装NPM
-RUN echo "NPM 安装完成."
 
 # 复制并设置权限
 COPY app.sh /
