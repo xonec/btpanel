@@ -14,7 +14,7 @@ ENV BAOTA_INSTALL_PATH=https://download.bt.cn/install/off_install.sh \
     NGINX_VERSION=1.22 \
     PHP_VERSION=7.4 \
     PHPMYADMIN_VERSION=5.2 \
-    MYSQL_VERSION=5.6
+    MYSQL_VERSION=8.0
 
 # 设置容器时间和更换国内源，安装依赖软件
 RUN ln -fs /usr/share/zoneinfo/${TZ} /etc/localtime \
