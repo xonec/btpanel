@@ -48,7 +48,7 @@ RUN ln -fs /usr/share/zoneinfo/${TZ} /etc/localtime \
     && rm -rf /var/lib/apt/lists/*  \
     
 # 安装或更新需要的 Python 包
-    && pip install --no-cache-dir --upgrade \
+RUN pip install --no-cache-dir --upgrade \
     gevent \
     pillow \
     setuptools \
@@ -67,9 +67,7 @@ RUN ln -fs /usr/share/zoneinfo/${TZ} /etc/localtime \
     pip \
     jinja2 \
     numpy
-    
-# 清理APT缓存
-    && rm -rf /var/lib/apt/lists/* 
+
 
 # 复制并设置权限
 COPY app.sh /
