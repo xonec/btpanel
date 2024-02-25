@@ -4,7 +4,7 @@ FROM debian:12.5-slim
 RUN groupadd -f www && useradd -g www www
 
 # 定义软件版本号和安装路径变量
-ENV BAOTA_INSTALL_PATH=https://download.bt.cn/install/off_install.sh \
+ENV BAOTA_INSTALL_PATH=https://download.bt.cn/install/install-ubuntu_6.0.sh \
     BAOTA_UPDATE_PATH=https://io.bt.sy/install/update_panel.sh \
     TZ=Asia/Shanghai \
     DEBIAN_FRONTEND=noninteractive \
