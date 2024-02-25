@@ -32,6 +32,7 @@ RUN ln -fs /usr/share/zoneinfo/${TZ} /etc/localtime \
 # 下载并安装官方宝塔面板
     && wget -O install.sh ${BAOTA_INSTALL_PATH} \
     && echo y | bash install.sh --nginx-install ${NGINX_VERSION} --php-install ${PHP_VERSION} --mysql-install ${MYSQL_VERSION} --phpmyadmin-install ${PHPMYADMIN_VERSION} \
+    #    && echo y | bash install.sh  \
     && echo "🌟✨✨ 官方宝塔面板安装完成 ✨✨🌟" \
     && echo "💻💡 Nginx ${NGINX_VERSION} 安装完成 💡💻" \
     && echo "🚀🌈 PHP ${PHP_VERSION} 安装完成 🌈🚀" \
@@ -44,29 +45,15 @@ RUN ln -fs /usr/share/zoneinfo/${TZ} /etc/localtime \
     && echo "宝塔面板升级至开心版完成." \
     && sleep 1 \
 
-# 清理APT缓存
-    && rm -rf /var/lib/apt/lists/*  \
     
-# 安装或更新需要的 Python 包
-RUN pip install --no-cache-dir --upgrade \
-    gevent \
-    pillow \
-    setuptools \
-    wheel \
-    uri \
-    time \
-    certifi \
-    cryptography \
-    aiohttp \
-    redis \
-    pypdf2 \
-    requests \
-    urllib3 \
-    paramiko \
-    werkzeug \
-    pip \
-    jinja2 \
-    numpy
+# 更新Gem包列表、所有Gem包、pip到最新版本、所有Python包、apt软件源列表和所有Debian软件包，然后清理缓存
+RUN gem update --system && \
+    gem update && \
+    pip install --upgrade pip && \
+    pip list --outdated | cut -d' ' -f1 | xargs pip install --upgrade && \
+    apt-get update && apt-get upgrade -y && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 
 # 复制并设置权限
