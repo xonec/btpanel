@@ -48,7 +48,7 @@ RUN ln -fs /usr/share/zoneinfo/${TZ} /etc/localtime \
     && bash /www/server/panel/install/install_soft.sh 0 install mysql ${MYSQL_VERSION}  > /dev/null 2>&1 \
     && echo "MySQL ${MYSQL_VERSION} 安装完成." \
     && sleep 3 \
-    && bash /www/server/panel/install/install_soft.sh 0 install phpmyadmin ${PHPMYADMIN_VERSION}  > /dev/null 2>&1 \
+    && bash /www/server/panel/install/install_soft.sh 1 install phpmyadmin ${PHPMYADMIN_VERSION}  > /dev/null 2>&1 \
     && echo "phpMyAdmin ${PHPMYADMIN_VERSION} 安装完成." \
     && sleep 3 \
     && echo "NPM 安装完成."
