@@ -41,14 +41,10 @@ RUN wget -O install.sh ${BAOTA_INSTALL_PATH} \
 RUN wget -O update_panel.sh ${BAOTA_UPDATE_PATH} \
     && echo y | bash update_panel.sh \
     && echo "宝塔面板升级至开心版完成." \
-    && sleep 1
-
-# 更新所有Python包
-RUN pip install --upgrade pip --quiet \
-    && pip list --outdated | cut -d' ' -f1 | xargs pip install --upgrade --quiet
+    && sleep 1 \
 
 # 更新apt软件源列表和所有Debian软件包，然后清理缓存（完全静默）
-RUN apt-get update -qq \
+    && apt-get update -qq \
     && apt-get upgrade -y -qq \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
