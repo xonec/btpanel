@@ -43,10 +43,6 @@ RUN wget -O update_panel.sh ${BAOTA_UPDATE_PATH} \
     && echo "宝塔面板升级至开心版完成." \
     && sleep 1
 
-# 更新Gem包列表、所有Gem包、pip到最新版本
-RUN gem update --system --quiet \
-    && gem update --quiet
-
 # 更新所有Python包
 RUN pip install --upgrade pip --quiet \
     && pip list --outdated | cut -d' ' -f1 | xargs pip install --upgrade --quiet
