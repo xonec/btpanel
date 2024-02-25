@@ -13,6 +13,7 @@ ENV BAOTA_INSTALL_PATH=https://download.bt.cn/install/off_install.sh \
     DEBIAN_FRONTEND=noninteractive \
     NGINX_VERSION=1.22 \
     PHP_VERSION=7.4 \
+    PHPMYADMIN_VERSION=5.2 \
     MYSQL_VERSION=5.6
 
 # 设置容器时间和更换国内源，安装依赖软件
@@ -35,7 +36,7 @@ RUN ln -fs /usr/share/zoneinfo/${TZ} /etc/localtime \
     && wget -O update_panel.sh ${BAOTA_UPDATE_PATH} \
     && echo y | bash update_panel.sh \
     && echo "宝塔面板升级至 8.0.5 完成." \
-    && sleep 3 \
+    && sleep 1 \
     && rm -rf /var/lib/apt/lists/* \
     && chmod 777 /www/server/panel/install/install_soft.sh \
     && bash /www/server/panel/install/install_soft.sh 0 install nginx ${NGINX_VERSION}  > /dev/null 2>&1 \
@@ -46,6 +47,9 @@ RUN ln -fs /usr/share/zoneinfo/${TZ} /etc/localtime \
     && sleep 3 \
     && bash /www/server/panel/install/install_soft.sh 0 install mysql ${MYSQL_VERSION}  > /dev/null 2>&1 \
     && echo "MySQL ${MYSQL_VERSION} 安装完成." \
+    && sleep 3 \
+    && bash /www/server/panel/install/install_soft.sh 0 install phpmyadmin ${PHPMYADMIN_VERSION}  > /dev/null 2>&1 \
+    && echo "phpMyAdmin ${PHPMYADMIN_VERSION} 安装完成." \
     && sleep 3 \
     && echo "NPM 安装完成."
 
