@@ -23,8 +23,7 @@ RUN ln -fs /usr/share/zoneinfo/${TZ} /etc/localtime \
     && echo "时间设置完成."
 
 # 更换国内源并更新APT源
-RUN sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list \
-    && apt-get update > /dev/null 2>&1 \
+RUN apt-get update > /dev/null 2>&1 \
     && echo "APT源更新完成."
 
 # 安装依赖软件
