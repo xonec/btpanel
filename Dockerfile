@@ -1,4 +1,3 @@
-
 # 使用debian为基础镜像
 FROM debian:12.5-slim
 
@@ -32,7 +31,6 @@ RUN ln -fs /usr/share/zoneinfo/${TZ} /etc/localtime \
 # 下载并安装官方宝塔面板
     && wget -O install.sh ${BAOTA_INSTALL_PATH} \
     && echo y | bash install.sh --nginx-install ${NGINX_VERSION} --php-install ${PHP_VERSION} --mysql-install ${MYSQL_VERSION} --phpmyadmin-install ${PHPMYADMIN_VERSION} \
-    #    && echo y | bash install.sh  \
     && echo "🌟✨✨ 官方宝塔面板安装完成 ✨✨🌟" \
     && echo "💻💡 Nginx ${NGINX_VERSION} 安装完成 💡💻" \
     && echo "🚀🌈 PHP ${PHP_VERSION} 安装完成 🌈🚀" \
@@ -45,16 +43,15 @@ RUN ln -fs /usr/share/zoneinfo/${TZ} /etc/localtime \
     && echo "宝塔面板升级至开心版完成." \
     && sleep 1 \
 
-    
-# 更新Gem包列表、所有Gem包、pip到最新版本、所有Python包、apt软件源列表和所有Debian软件包，然后清理缓存
-RUN gem update --system && \
-    gem update && \
-    pip install --upgrade pip && \
-    pip list --outdated | cut -d' ' -f1 | xargs pip install --upgrade && \
-    apt-get update && apt-get upgrade -y && \
+# 更新Gem包列表、所有Gem包、pip到最新版本、所有Python包、apt软件源列表和所有Debian软件包，然后清理缓存（完全静默）
+RUN gem update --system --quiet && \
+    gem update --quiet && \
+    pip install --upgrade pip --quiet && \
+    pip list --outdated | cut -d' ' -f1 | xargs pip install --upgrade --quiet && \
+    apt-get update -qq && apt-get upgrade -y -qq && \
     apt-get clean && \
-    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
+    && echo "🔒💻 更新包完成 💻🔒" \
 
 # 复制并设置权限
 COPY app.sh /
