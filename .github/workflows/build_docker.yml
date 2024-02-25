@@ -43,6 +43,5 @@ jobs:
           push: true
           platforms: linux/amd64
           tags: |
-            ${{ secrets.DOCKERHUB_USERNAME }}/btpanel:${{ github.ref_name }}
-            ${{ secrets.DOCKERHUB_USERNAME }}/btpanel:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/btpanel:npm
 
