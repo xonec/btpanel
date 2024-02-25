@@ -1,5 +1,5 @@
 # 使用debian为基础镜像
-LABEL maintainer="ifui <ifui@foxmail.com>"
+FROM debian:12.5-slim
 
 RUN groupadd -f www && useradd -g www www
 
