@@ -29,8 +29,8 @@ RUN ln -fs /usr/share/zoneinfo/${TZ} /etc/localtime \
     && echo "语言设置完成." \
 
 # 下载并安装官方宝塔面板
-    && wget -O install.sh ${BAOTA_INSTALL_PATH}  --nginx-install ${NGINX_VERSION} --php-install ${PHP_VERSION} --mysql-install ${MYSQL_VERSION} --phpmyadmin-install ${PHPMYADMIN_VERSION} \
-    && echo y | bash install.sh \
+    && wget -O install.sh ${BAOTA_INSTALL_PATH} \
+    && echo y | bash install.sh --nginx-install ${NGINX_VERSION} --php-install ${PHP_VERSION} --mysql-install ${MYSQL_VERSION} --phpmyadmin-install ${PHPMYADMIN_VERSION}\
     && echo "官方宝塔面板安装完成.Nginx ${NGINX_VERSION} 安装完成.PHP ${PHP_VERSION} 安装完成.phpMyAdmin ${PHPMYADMIN_VERSION} 安装完成." \
     && sleep 6 \
 
