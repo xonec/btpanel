@@ -1,5 +1,5 @@
 # 使用debian为基础镜像
-FROM debian:bullseye-slim
+FROM debian:12.5-slim
 
 # 设置维护者信息
 LABEL maintainer="ifui <ifui@foxmail.com>"
