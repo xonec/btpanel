@@ -1,6 +1,6 @@
 # 自动构建宝塔(LNMP)Docker容器镜像
 
-本Docker容器镜像基于Debian Bullseye Slim构建，用于快速部署包含Nginx、PHP和MySQL的Web应用环境。
+本Docker容器镜像基于Debian:12-Slim构建，用于快速部署包含Nginx、PHP和MySQL的Web应用环境。
 
 **重要提示：本Docker容器镜像仅供个人学习和测试之用，切勿在生产环境中使用。我们无法对因在生产环境中使用此镜像而造成的任何损失或问题负责。请谨慎使用，并遵守相关法律法规。**
 
